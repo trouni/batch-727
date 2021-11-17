@@ -1,0 +1,22 @@
+.marker {
+  background-color: hotpink;
+  color: white;
+  border: solid 2px white;
+  font-size: 1.3em;
+  height: 2em;
+  padding: auto 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1em;
+  min-width: 5em;
+}
+
+.mapboxgl-popup {
+  max-width: 200px;
+}
+
+.mapboxgl-popup-content {
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+}
