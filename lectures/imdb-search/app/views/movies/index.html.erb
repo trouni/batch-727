@@ -10,9 +10,12 @@
         <%= submit_tag "Search", class: "btn btn-primary" %>
       <% end %>
       <div id="movies">
-        <% @movies.each do |movie| %>
-          <h4><%= movie.title %></h4>
-          <p><%= movie.synopsis %></p>
+        <% @movies.each do |pg_search_document| %>
+          <h4><%= pg_search_document.searchable.title %></h4>
+          <p><%= pg_search_document.searchable.synopsis %></p>
+          <% if pg_search_document.searchable_type == 'Movie' %>
+            <p><%= pg_search_document.searchable.director.first_name %> <%= pg_search_document.searchable.director.last_name %></p>
+          <% end %>
         <% end %>
       </div>
     </div>
