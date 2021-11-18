@@ -113,12 +113,11 @@ Set the `data-controller` in a div that contains both:
 `data-target` is the equivalent of `document.querySelector`
 
 ```erb
-<%= simple_form_for([ @restaurant, @review ],
-                    html: { data: { collapsible_form_target: 'form' } },
-                    remote: true) do |f| %>
-
-<!-- Simple form will generate a form tag like this: -->
-<form action="..." data-collapsible-form-target="form" ... >
+<div data-collapsible-target="form">
+  <%= simple_form_for([ @restaurant, @review ], remote: true) do |f| %>
+    <!-- [...] -->
+  <% end %>
+</div>
 ```
 
 Syntax: `data-<controller-name>-target="targetName"`
