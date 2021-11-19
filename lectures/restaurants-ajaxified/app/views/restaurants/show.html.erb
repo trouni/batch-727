@@ -1,3 +1,30 @@
-<%#= image_tag "http://source.unsplash.com/collection/3099344/1000x500", width: "100%", class: "border shadow mb-5" %>
-<%# https://getbootstrap.com/docs/4.0/components/card/#titles-text-and-links %>
-<%# https://fontawesome.com/v5.15/icons/map-marker-alt?style=solid %>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col col-md-8">
+      <%= image_tag "http://source.unsplash.com/collection/3099344/1000x500", width: "100%", class: "border shadow mb-5" %>
+      <h2>Reviews (<%= @restaurant.reviews.count %>)</h2>
+      <div data-controller="collapsible-form">
+        <button data-action="click->collapsible-form#expand" class="btn btn-outline-primary w-100">Leave a review</button>
+        <div data-collapsible-form-target="elementToCollapse">
+          <%= simple_form_for([ @restaurant, @review ], remote: true) do |f| %>
+            <%= f.input :content, as: :text, label: false %>
+            <%= f.button :submit, 'Submit', class: 'btn btn-primary w-100 mb-5' %>
+          <% end %>
+        </div>
+      </div>
+      <div id="reviews">
+        <%= render @restaurant.reviews.order(created_at: :desc) %>
+      </div>
+    </div>
+    <div class="col col-md-4">
+      <div class="card">
+        <div class="card-body sticky-top">
+          <h5 class="card-title"><%= @restaurant.name %></h5>
+          <h6 class="card-subtitle mb-2 text-muted"><small><i class="fas fa-map-marker-alt"></i> <%= @restaurant.address %></small></h6>
+          <h6 class="card-subtitle mb-2 text-muted"><%= @restaurant.category %></h6>
+          <p class="card-text"><%= @restaurant.description %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
